@@ -3,8 +3,7 @@ import { getAlbumById, getAlbumByName, getAlbumsByYear, getAllAlbums } from '../
 
 const router = Router();
 
-router.get('/', getAllAlbums
-);
+router.get('/', getAllAlbums);
 
 router.get('/id/:id', getAlbumById);
 

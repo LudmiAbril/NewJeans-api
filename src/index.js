@@ -1,6 +1,7 @@
 import express from "express";
 import membersRoutes from './routes/members.js';
 import albumRoutes from './routes/albums.js'
+import songsRoutes from './routes/songs.js'
 import sequelize from "./config/database.js";
 const app = express();
 const port = process.env.PORT;
@@ -11,6 +12,7 @@ sequelize.sync()
 
 app.use('/api/members', membersRoutes);
 app.use('/api/albums', albumRoutes);
+app.use('/api/songs', songsRoutes);
 
 app.get('/', (_req, res) => {
   res.send('Welcome to the NewJeans API!');

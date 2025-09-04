@@ -3,8 +3,7 @@ import { getAllMembers, getMemberById, getMemberByName } from '../controllers/me
 
 const router = Router();
 
-router.get('/', getAllMembers
-);
+router.get('/', getAllMembers);
 
 router.get('/id/:id', getMemberById);
 

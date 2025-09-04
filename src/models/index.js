@@ -2,8 +2,8 @@ import Album from "./album.js"
 import Song from "./song.js"
 import Genre from "./genre.js";
 
-Album.hasMany(Song, { foreignKey: "album_id", as: "songs" });
-Song.belongsTo(Album, { foreignKey: "album_id", as: "album" })
+Album.hasMany(Song, { foreignKey: "albumId", as: "songs" });
+Song.belongsTo(Album, { foreignKey: "albumId", as: "album" })
 
 Album.belongsToMany(Genre, {
   through: {
