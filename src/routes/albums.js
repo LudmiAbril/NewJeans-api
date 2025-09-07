@@ -23,9 +23,16 @@ const router = Router();
  *         name: year
  *         schema:
  *           type: integer
- *           example: 2023
+ *           example: 2024
  *         required: false
  *         description: Filter albums by release year.
+ *       - in: query
+ *         name: withSongs
+ *         schema:
+ *           type: boolean
+ *           example: true
+ *         required: false
+ *         description: Whether you want to include the songs.
  *     responses:
  *       200:
  *         description: List of albums (or filtered album(s) if a query parameter is provided).
@@ -55,6 +62,13 @@ router.get('/', getAllAlbums);
  *           example: 1
  *         required: true
  *         description: ID of the album to retrieve
+ *       - in: query
+ *         name: withSongs
+ *         schema:
+ *           type: boolean
+ *           example: true
+ *         required: false
+ *         description: Whether you want to include the songs.
  *     responses:
  *       200:
  *         description: Album

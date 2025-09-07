@@ -5,7 +5,7 @@ export const getAllVideos = async (req, res) => {
         const { name, director, year } = req.query;
         const where = {};
 
-        if (name) where.name = name;
+        if (name) where.title = name;
         if (director) where.director = director;
         if (year) where.year = year;
 

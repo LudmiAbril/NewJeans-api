@@ -28,7 +28,7 @@ export const getSongById = async (req, res) => {
 export const getSongByName = async (req, res) => {
     try {
         const options = buildSongQuery(req.query);
-        const name = req.params.name.toLowerCase();
+        const name = req.query.name.toLowerCase();
         const song = await Song.findOne({ where: { title: name }, ...options });
         if (!song) {
             return res.status(404).json({ error: 'Song not found' });

@@ -30,7 +30,7 @@ const router = Router();
  *         name: year
  *         schema:
  *           type: integer
- *           example: 2023
+ *           example: 2024
  *         required: false
  *         description: Filter videos by release year.
  *     responses:

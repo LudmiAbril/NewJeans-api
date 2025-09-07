@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../config/database.js";
+import Album from "./album.js";
 
 const Song = sequelize.define("Song", {
     id: {
@@ -22,7 +23,7 @@ const Song = sequelize.define("Song", {
         type: DataTypes.INTEGER,
         field: "album_id",
         references: {
-            model: "Album",
+            model: Album,
             key: "id"
         },
         allowNull: true

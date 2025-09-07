@@ -12,11 +12,11 @@ export const getAllAlbums = async (req, res) => {
         }
         if (year) {
             where[Op.and] = [
-                sequelizeWhere(fn("YEAR", col("release_date")), year)
+                sequelizeWhere(fn("YEAR", col("Album.release_date")), year)
             ];
         }
         const albums = await Album.findAll({
-            include, where
+            include, where, distinct: true
         });
         res.json(albums)
     } catch (error) {

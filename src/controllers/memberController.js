@@ -24,7 +24,7 @@ export const getMemberById = async (req, res) => {
 
 export const getMemberByName = async (req, res) => {
     try {
-        const name = req.params.name.toLowerCase();
+        const name = req.query.name.toLowerCase();
         const member = await Member.findOne({ where: { stageName: name }});
         if (!member) {
             return res.status(404).json({ error: 'Member not found' });
