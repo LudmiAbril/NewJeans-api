@@ -4,6 +4,8 @@ import albumRoutes from './routes/albums.js'
 import songsRoutes from './routes/songs.js'
 import videosRoutes from './routes/musicVideos.js'
 import sequelize from "./config/database.js";
+import { swaggerDocs } from "./config/swagger.js";
+
 const app = express();
 const port = process.env.PORT;
 
@@ -19,6 +21,8 @@ app.use('/api/mv', videosRoutes);
 app.get('/', (_req, res) => {
   res.send('Welcome to the NewJeans API!');
 });
+
+swaggerDocs(app);
 
 app.listen(port, () => {
   console.log(`Example server listening on port ${port}`)

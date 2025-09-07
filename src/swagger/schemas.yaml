@@ -1,0 +1,116 @@
+components:
+  schemas:
+    Member:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        stageName:
+          type: string
+          example: "Minji"
+        birthName:
+          type: string
+          example: "Kim Min-ji"
+        role:
+          type: string
+          example: "Main Vocalist"
+        birthDate:
+          type: string
+          format: date
+          example: "2004-05-07"
+        nationality:
+          type: string
+          example: "South Korean"
+        imageUrl:
+          type: string
+      required:
+      - id
+      - stageName
+      - birthName
+    Song:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: "Attention"
+        releaseDate:
+          type: string
+          format: date
+          example: "2022-07-21"
+        length:
+          type: string
+          example: "00:03:00"
+        album:
+          $ref: "#/components/schemas/Album"
+      required:
+        - id
+        - title
+    Album:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: "New Jeans"
+        type:
+          type: string
+          example: "EP"
+        releaseDate:
+          type: string
+          format: date
+          example: "2022-08-01"
+        length:
+          type: string
+          example: "00:03:00"
+        label:
+          type: string
+          example: "ADOR"
+        coverImageUrl:
+          type: string
+        songs:
+          type: array
+          items:
+            $ref: "#/components/schemas/Song"
+        genres:
+          type: array
+          items:
+            $ref: "#/components/schemas/Genre"
+      required:
+        - id
+        - title
+    Genre:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: "KPop"
+      required:
+        - id
+        - name
+    MusicVideo:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: "Hype Boy (Intro)"
+        year:
+          type: integer
+          example: 2022
+        director:
+          type: string
+          example: "Shin Hee-won"
+      required:
+        - id
+        - title

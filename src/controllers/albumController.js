@@ -1,12 +1,22 @@
-import sequelize from "../config/database.js";
 import { Album } from "../models/index.js";
 import { buildAlbumInclude } from "../helpers/albumHelpers.js";
+import { Op, fn, col, where as sequelizeWhere } from "sequelize";
 
 export const getAllAlbums = async (req, res) => {
     try {
         const include = buildAlbumInclude(req.query);
+        const { name, year } = req.query;
+        const where = {};
+        if (name) {
+            where.title = { [Op.like]: `%${name}%` };
+        }
+        if (year) {
+            where[Op.and] = [
+                sequelizeWhere(fn("YEAR", col("release_date")), year)
+            ];
+        }
         const albums = await Album.findAll({
-            include
+            include, where
         });
         res.json(albums)
     } catch (error) {
@@ -25,42 +35,6 @@ export const getAlbumById = async (req, res) => {
             return res.status(404).json({ error: 'Album not found' });
         }
         res.json(album)
-    } catch (error) {
-        res.status(505).json({ error: error.message })
-    }
-}
-
-export const getAlbumByName = async (req, res) => {
-    try {
-        const include = buildAlbumInclude(req.query);
-        const name = req.params.name.toLowerCase();
-        const album = await Album.findOne({
-            where: { title: name }, include
-        });
-        if (!album) {
-            return res.status(404).json({ error: 'Album not found' });
-        }
-        res.json(album)
-    } catch (error) {
-        res.status(505).json({ error: error.message })
-    }
-}
-
-export const getAlbumsByYear = async (req, res) => {
-    try {
-        const include = buildAlbumInclude(req.query);
-        const year = req.params.year;
-        const albums = await Album.findAll({
-            where: sequelize.where(
-                sequelize.fn("YEAR", sequelize.col("Album.release_date")),
-                year
-            ),
-            include
-        });
-        if (!albums) {
-            return res.status(404).json({ error: 'Album not found' });
-        }
-        res.json(albums)
     } catch (error) {
         res.status(505).json({ error: error.message })
     }
