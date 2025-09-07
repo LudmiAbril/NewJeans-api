@@ -22,6 +22,8 @@ app.get('/', (_req, res) => {
   res.send('Welcome to the NewJeans API!');
 });
 
+app.use(express.static("public"));
+
 swaggerDocs(app);
 
 app.listen(port, () => {
